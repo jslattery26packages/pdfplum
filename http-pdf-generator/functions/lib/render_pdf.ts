@@ -20,15 +20,9 @@ export async function renderPdf({
   networkIdleTime: number;
   shouldWaitForIsReady: boolean;
 }): Promise<Buffer> {
-  // if (headless === true) {
-  //   chromiumArguments.push("--single-process");
-  // } else {
-  //   chromiumArguments.push("--start-maximized");
-  // }
-
   let browser: Browser;
   if (process.env.FUNCTIONS_EMULATOR === "true") {
-    const puppeteer = await import("puppeteer");
+    const puppeteer = await import("__puppeteer".substring(2));
     browser = await puppeteerCore.launch({
       executablePath: puppeteer.executablePath(),
     });
