@@ -1,5 +1,5 @@
-import puppeteerCore, { PDFOptions, Browser } from "puppeteer-core";
-import * as functions from "firebase-functions";
+import type { PDFOptions, Browser } from "puppeteer-core";
+import * as functions from "firebase-functions/v1";
 
 /**
  * Opens a Chromium page, opens the content served on `portNumber`, generates
@@ -20,6 +20,7 @@ export async function renderPdf({
   networkIdleTime: number;
   shouldWaitForIsReady: boolean;
 }): Promise<Buffer> {
+  const { default: puppeteerCore } = await import("puppeteer-core");
   let browser: Browser;
   if (process.env.FUNCTIONS_EMULATOR === "true") {
     const puppeteer = await import("__puppeteer".substring(2));

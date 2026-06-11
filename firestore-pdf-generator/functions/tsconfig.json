@@ -9,7 +9,6 @@
     "target": "es2017",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
     "rootDirs": ["./src", "./lib"],
     "paths": {
       "lib/*": ["./lib/*"],

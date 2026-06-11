@@ -3,7 +3,7 @@ import * as os from "os";
 import * as path from "path";
 import jszip from "jszip";
 import Handlebars from "handlebars";
-import * as functions from "firebase-functions";
+import * as functions from "firebase-functions/v1";
 import { getStorage } from "firebase-admin/storage";
 import { ApiError } from "@google-cloud/storage";
 import "./utilities/setup_handlebars";
@@ -53,7 +53,8 @@ export async function loadTemplate({
     path.join(os.tmpdir(), "pdfplum-"),
   );
 
-  const zipFile = await jszip.loadAsync(templateBuffer);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const zipFile = await jszip.loadAsync(templateBuffer as any);
   let rootDirectory: string | undefined;
   const compressedFiles = Object.entries(zipFile.files).filter(
     ([filename]) => !filename.includes("__MACOSX/"),
@@ -95,7 +96,8 @@ export async function loadTemplate({
       const filePath = path.join(temporaryDirectoryPath, relativePath);
       const directoryPath = path.dirname(filePath);
       fs.mkdirSync(directoryPath, { recursive: true });
-      fs.writeFileSync(filePath, content);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      fs.writeFileSync(filePath, content as any);
     },
   );
 

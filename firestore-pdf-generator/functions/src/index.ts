@@ -3,7 +3,7 @@ import * as admin from "firebase-admin";
 
 admin.initializeApp();
 
-import * as functions from "firebase-functions";
+import * as functions from "firebase-functions/v1";
 import { FirestoreDocument, parseParameters } from "./parse_parameters";
 import { producePdf } from "lib/produce_pdf";
 import { runAction } from "lib/utilities/action";

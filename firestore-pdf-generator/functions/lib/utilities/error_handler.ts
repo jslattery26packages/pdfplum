@@ -1,4 +1,4 @@
-import * as functions from "firebase-functions";
+import * as functions from "firebase-functions/v1";
 import { eventChannel, EVENT_TYPE_PREFIX } from "src/event_channel";
 import { extensionParameters } from "./extension_parameters";
 
